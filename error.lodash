@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title><%=status[0]%> <%=status[1]%></title>
+        <style>
+            body {
+                background-color: <%=colors[0]%>;
+                color: <%=colors[1]%>;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                text-shadow: 5px 3px <%=colors[2]%>;
+                text-align: center;
+            }
+            .fof {
+                font-size: 512px;
+                margin: 15px;
+            }
+            .pnf {
+                font-size: 64px;
+                text-align: center;
+                margin-top: -30px;
+            }
+            .msg {
+                background-color: <%=colors[3]%>;
+                color: black;
+                text-shadow: none;
+                width: 750px;
+                margin: 0 auto;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 3px 3px <%=colors[4]%>;
+                font-size: 16px;
+                overflow: auto;
+            }
+            @media (max-width:900px) {
+                .fof {
+                    font-size: 256px;
+                }
+                .pnf {
+                    font-size: 32px;
+                    text-shadow: 2px 2px;
+                }
+                .msg {
+                    width: 400px;
+                }
+            }
+            @media (max-width:500px) {
+                .fof {
+                    font-size: 128px;
+                }
+                .pnf {
+                    font-size: 32px;
+                    text-shadow: 1px 1px;
+                }
+                .msg {
+                    box-sizing: border-box;
+                    width: 90%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <p class="fof"><%=status[0]%></p>
+        <p class="pnf"><%=status[1]%></p>
+        <% if(message) { %>
+            <div class="msg"><%=message%></div>
+        <% } %>
+    </body>
+</html>

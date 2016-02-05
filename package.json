@@ -1,0 +1,52 @@
+{
+  "name": "rabat",
+  "version": "0.2.0",
+  "description": "a web framework",
+  "main": "index.coffee",
+  "dependencies": {
+    "bluebird": "^2.10.2",
+    "body-parser": "^1.14.1",
+    "callsite": "^1.0.0",
+    "coffee-script": "^1.10.0",
+    "config": "^1.17.1",
+    "connect": "^3.4.0",
+    "consolidate": "^0.13.1",
+    "debug": "^2.2.0",
+    "express": "^4.12.3",
+    "express-session": "^1.11.3",
+    "finalhandler": "^0.4.1",
+    "flat": "^1.6.0",
+    "glob": "^5.0.15",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.1",
+    "mime": "^1.3.4",
+    "multer": "^0.1.8",
+    "reflekt": "^0.3.9",
+    "serve-static": "^1.10.0",
+    "youtube-api": "^0.3.2"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "http",
+    "connect",
+    "web",
+    "framework",
+    "express",
+    "sails",
+    "router",
+    "controller",
+    "view",
+    "application"
+  ],
+  "author": {
+    "name": "Reda El Khattabi",
+    "email": "reda.ea@gmail.com",
+    "url": "http://github.com/reda-ea"
+  },
+  "license": "ISC"
+}
