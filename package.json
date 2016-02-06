@@ -1,7 +1,7 @@
 {
   "name": "rabat",
-  "version": "0.2.0",
-  "description": "a web framework",
+  "version": "0.2.1",
+  "description": "The intuitive Node.js web framework",
   "main": "index.coffee",
   "dependencies": {
     "bluebird": "^2.10.2",
@@ -48,5 +48,5 @@
     "email": "reda.ea@gmail.com",
     "url": "http://github.com/reda-ea"
   },
-  "license": "ISC"
+  "license": "Apache version 2.0"
 }
