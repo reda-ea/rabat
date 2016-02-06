@@ -79,3 +79,85 @@ subapp =
     index: ->
         throw new Error('be more specific')
 ```
+
+### Documentation
+
+The framework is broken into separate modules,
+and each module can be used completely separately.
+
+<small>(Documentation still in progress,
+will be updated with more details / actual code very soon)</small>
+
+#### Application
+
+The application combines all of the individual modules,
+and adds a lot of features / logic, and is the preferred way
+to use the framework.
+
+Understanding the different modules, however,
+can greately help make the best use of the application module.
+
+[read more]() <small>(coming soon)</small>
+
+#### Controller
+
+The initial / core concept for this framework.
+
+The idea is to map a wen action to a simple promise enabled function:
+input parameters are function arguments, the return value defines the output.
+
+Additionally, controllers can be extended, which will provide more functionality
+through the "this" object in the function (the main way services are designed).
+
+[read more]() <small>(coming soon)</small>
+
+#### Router
+
+A very basic / fast router for node.js web applications.
+
+Instead of using a list of patterns (that most higher level frameworks will
+build from an object - eg sails.js & express), routes will be directly
+specified as objects, with leaves being normal node.js query handlers.
+
+Additionally, any router can be used as sub-router in another one,
+and it is possible to send redirects to that router, without knowing where
+it is mounted.
+
+[read more]() <small>(coming soon)</small>
+
+#### Model (experimental)
+
+Very generic data model, independant of the data source (database,
+web service, static, etc).
+
+The interface allows creating model classes by defining the basic
+functionalities (querying, saving, deleting) and fields to populate.
+
+The resulting class automatically handles querying, saving, etc across multiple
+levels (eg retrieve a group with all its users, modify the user objects then
+save the group -> will issue individual updates to all users in the database).
+
+[read more]() <small>(coming soon)</small>
+
+### Configuration
+
+Many modules and extensions are configurable (eg default view folder), and all
+available settings can be viewed when the application is running.
+
+Application settings can be specified directly on the developed modules,
+and will autmatically be included to the available options.
+
+Configuration values can be specified in configuration files, environment
+variables, or on the command line.
+
+[read more]() <small>(coming soon)</small>
+
+#### Utilities / Extensions
+
+In addition to the core modules, common functionality is provided out of the
+box as plugins / extesions to the framework handling:
+
+* [Response types]() <small>(coming soon)</small>
+* [Views and templates]() <small>(coming soon)</small>
+* [Session management]() <small>(coming soon)</small>
+* [Error pages]() <small>(coming soon)</small>
