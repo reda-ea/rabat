@@ -1,8 +1,8 @@
 {
   "name": "rabat",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "description": "The intuitive Node.js web framework",
-  "main": "index.coffee",
+  "main": "dist/index.js",
   "dependencies": {
     "bluebird": "^2.10.2",
     "body-parser": "^1.14.1",
