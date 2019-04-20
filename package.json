@@ -23,10 +23,17 @@
     "reflekt": "^0.3.9"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.2"
+    "coffee-script": "^1.9.2",
+    "jest": "^24.7.1",
+    "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/test/*.test.js"
+    ]
   },
   "keywords": [
     "http",
