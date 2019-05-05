@@ -1,0 +1,70 @@
+<? docfiles.forEach(function(doc) { ?>
+
+  <!-- Start <?= doc.filename ?> -->
+
+  <? doc.javadoc.forEach(function(comment) { ?>
+    <? if (!comment.ignore) { ?>
+      <? if (comment.name) { ?>
+        <? if (comment.paramStr) { ?>
+          ### <?= comment.name ?>(<?= comment.paramStr ?>)
+        <? } else { ?>
+          ## <?= comment.name ?>
+        <? } ?>
+      <? } ?>
+
+        <?= comment.description ?>
+
+        <? if (comment.deprecated) { ?>
+          **Deprecated**
+        <? } ?>
+
+        <? if (comment.author) { ?>
+          Author: <?- comment.author ?>
+        <? } ?>
+
+        <? if (comment.version) { ?>
+          Version: <?= comment.version ?>
+        <? } ?>
+
+        <? if (comment.see) { ?>
+          See: <?= comment.see ?>
+        <? } ?>
+
+      <? if (comment.propertyTags.length > 0) { ?>
+        #### Properties:
+
+        | Name | Type | Description |
+        | ---- | ---- | ----------- |
+        <? comment.propertyTags.forEach(function(propertyTag) {
+          ?>| <?= propertyTag.name
+          ?> | <?= propertyTag.types.join(' &#124; ') ?><?= propertyTag.optional ? ' *`(optional)`*' : ''
+          ?> | <?= propertyTag.description.replace('\n', '<br>') ?> |
+        <? }) ?>
+      <? } ?>
+
+      <? if (comment.paramTags.length > 0) { ?>
+        #### Params:
+
+        | Name | Type | Description |
+        | ---- | ---- | ----------- |
+        <? comment.paramTags.forEach(function(paramTag) {
+          ?>| <?= paramTag.name
+          ?> | <?= paramTag.types.join(' &#124; ') ?><?= paramTag.optional ? ' *`(optional)`*' : ''
+          ?> | <?= paramTag.description.replace('\n', '<br>') ?> |
+        <? }) ?>
+      <? } ?>
+
+      <? if (comment.returnTags.length > 0) { ?>
+        #### Returns:
+        <? comment.returnTags.forEach(function(returnTag) { ?>
+          *<? if (returnTag.types.length > 0) { ?> **<?= returnTag.joinedTypes ?>**<? } ?> <?= returnTag.description ?>
+        <? }) ?>
+      <? } ?>
+
+      ----
+    <? } ?>
+  <? }) ?>
+
+  <!-- End <?= doc.filename ?> -->
+
+<? }) ?>
