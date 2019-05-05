@@ -23,7 +23,7 @@ and modified - including the body.
 
 ### constructor(input)
 
-Builds a response out of the provided data
+Builds a response out of the provided data.
 
 The contents of the response depend on the type of input:
 * `Response`: simply copies the provided response
@@ -57,6 +57,27 @@ This method can be used like any
 | req | http.IncomingMessage | request object |
 | res | http.ServerResponse | response object |
 | next | function *`(optional)`* | method for chaining middlewares |
+
+----
+
+### fromPromise(promise)
+
+Builds a response from a promise.
+
+The promise is expected to respolve to a value that can
+construct a new `Response` (see constructor syntax above)
+
+If the promise fails, the error value is used to construct
+a `Response`, and if the contructed response does not have
+a valid `status`, it will default to a `500`
+
+See: [constructor(input)](#constructorinput)
+
+#### Params:
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| promise | Promise | resolves to a `Response` input |
 
 ----
 

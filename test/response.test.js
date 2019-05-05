@@ -36,7 +36,7 @@ describe('response constructor', () => {
   });
 
   it('allows custom response', async () => {
-    let response = new Response((req, res, next) => {
+    let response = new Response((req, res) => {
       res.statusCode = 211;
       res.setHeader('x-hello', 'world');
       res.end();
@@ -58,6 +58,43 @@ describe('response constructor', () => {
     expect(output1.text).toBe(output2.text);
   });
 });
+
+describe('building from promise', () => {
+  it('builds a 200 response from a successful promise', async() => {
+    let response = await Response.fromPromise(new Promise(resolve =>
+      setTimeout(() => resolve('hello world'), 100)
+    ));
+    let output = await serve(response).get('/');
+    expect(output.status).toBe(200);
+    expect(output.text).toBe('hello world');
+  });
+
+  it('builds a 500 response from a failed promise', async() => {
+    let response = await Response.fromPromise(new Promise(() => {
+      throw('error');
+    }));
+    let output = await serve(response).get('/');
+    expect(output.status).toBe(500);
+    expect(output.text).toBe('error');
+  });
+
+  it('can build errors with other status codes', async () => {
+    let response = await Response.fromPromise(new Promise(() => {
+      throw(Object.assign(new Response(), {
+          status: 401,
+      }));
+    }));
+    let output = await serve(response).get('/');
+    expect(output.status).toBe(401);
+  });
+
+  it('also accepts non promise input', async () => {
+    let response = await Response.fromPromise("not a promise");
+    let output = await serve(response).get('/');
+    expect(output.status).toBe(200);
+    expect(output.text).toBe('not a promise');
+  });
+})
 
 describe('response object', () => {
   it('allows changing status', async () => {
@@ -101,7 +138,6 @@ describe('response object', () => {
     expect(output.status).toBe(404);
   });
 });
-
 
 describe('sending response', () => {
   it('custom has highest priority, and ignores all other fields', async () => {

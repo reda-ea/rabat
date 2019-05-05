@@ -1,13 +1,13 @@
 
-let finalhandler  = require( 'finalhandler');
-let mime = require('mime');
+const finalhandler  = require( 'finalhandler');
+const mime = require('mime');
 
-let debug = require('debug')('rabat:response');
+const debug = require('debug')('rabat:response');
 
-const fix_status = (status) => {
+const fix_status = (status, def = 200) => {
     if(/^[1-5][0-9][0-9]$/.test(status))
         return status;
-    return 200;
+    return def;
 };
 
 const is_empty = (resp) =>
@@ -27,7 +27,7 @@ const is_empty = (resp) =>
  */
 class Response {
     /**
-     * Builds a response out of the provided data
+     * Builds a response out of the provided data.
      *
      * The contents of the response depend on the type of input:
      * * `Response`: simply copies the provided response
@@ -107,5 +107,29 @@ class Response {
         res.end();
     }
 }
+
+/**
+ * Builds a response from a promise.
+ *
+ * The promise is expected to respolve to a value that can
+ * construct a new `Response` (see constructor syntax above)
+ *
+ * If the promise fails, the error value is used to construct
+ * a `Response`, and if the contructed response does not have
+ * a valid `status`, it will default to a `500`
+ *
+ * @param {Promise} promise resolves to a `Response` input
+ *
+ * @see [constructor(input)](#constructorinput)
+ */
+Response.fromPromise = async function(promise) {
+    try {
+        return new Response(await promise);
+    } catch(error) {
+        let response = new Response(error);
+        response.status = fix_status(response.status, 500);
+        return response;
+    }
+};
 
 module.exports = Response;
