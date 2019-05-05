@@ -38,7 +38,7 @@
         <? comment.propertyTags.forEach(function(propertyTag) {
           ?>| <?= propertyTag.name
           ?> | <?= propertyTag.types.join(' &#124; ') ?><?= propertyTag.optional ? ' *`(optional)`*' : ''
-          ?> | <?= propertyTag.description.replace('\n', '<br>') ?> |
+          ?> | <?= propertyTag.description.replace(/\n/g, '<br>') ?> |
         <? }) ?>
       <? } ?>
 
@@ -50,7 +50,7 @@
         <? comment.paramTags.forEach(function(paramTag) {
           ?>| <?= paramTag.name
           ?> | <?= paramTag.types.join(' &#124; ') ?><?= paramTag.optional ? ' *`(optional)`*' : ''
-          ?> | <?= paramTag.description.replace('\n', '<br>') ?> |
+          ?> | <?= paramTag.description.replace(/\n/g, '<br>') ?> |
         <? }) ?>
       <? } ?>
 
